@@ -38,16 +38,15 @@
                     "strings": "off"
                 },
 
-                // 4. Natively force Markdown files and PDF files to open in Preview mode rather than the raw text editor
+                // 4. Natively force Markdown files to open in Preview mode rather than the raw text editor
                 "workbench.editorAssociations": {
-                    "*.md": "vscode.markdown.preview.editor",
-                    "*.pdf": "pdf.preview"
+                    "*.md": "vscode.markdown.preview.editor"
                 }
             },
             "extensions": [
                 "ms-vscode.cpptools",
                 "ms-vscode.cpptools-extension-pack",
-                "tomoki1207.pdf",
+                "analytic-signal.preview-pdf",
                 "${containerWorkspaceFolder}/.devcontainer/coding-rabbit-0.4.2.vsix"
             ]
         }
