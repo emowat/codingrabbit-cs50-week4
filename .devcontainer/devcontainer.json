@@ -47,7 +47,7 @@
                 "ms-vscode.cpptools",
                 "ms-vscode.cpptools-extension-pack",
                 "tomoki1207.pdf",
-                "${containerWorkspaceFolder}/.devcontainer/coding-rabbit-0.4.1.vsix"
+                "${containerWorkspaceFolder}/.devcontainer/coding-rabbit-0.4.2.vsix"
             ]
         }
     },
