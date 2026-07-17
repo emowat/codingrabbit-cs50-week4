@@ -13,11 +13,30 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     git \
     curl \
+    ca-certificates \
     unzip \
     sudo \
     valgrind \
     vim \
     && rm -rf /var/lib/apt/lists/*
+
+# Install libcs50 (github.com/cs50/libcs50) so problem sets that
+# #include <cs50.h> (get_int, get_string, etc.) compile out of the box.
+# Version pinned rather than tracking "latest" so a devcontainer rebuild
+# mid-course can't silently change library behavior under students.
+ARG LIBCS50_VERSION=v11.0.3
+RUN curl -sL "https://api.github.com/repos/cs50/libcs50/tarball/${LIBCS50_VERSION}" -o /tmp/libcs50.tar.gz \
+    && mkdir -p /tmp/libcs50 \
+    && tar -xzf /tmp/libcs50.tar.gz -C /tmp/libcs50 --strip-components=1 \
+    && make -C /tmp/libcs50 install \
+    && ldconfig \
+    && rm -rf /tmp/libcs50 /tmp/libcs50.tar.gz
+
+# CS50's own problem set instructions just say "make progname" - no Makefile,
+# no explicit -lcs50. GNU Make's built-in implicit rule for compiling a single
+# .c file automatically appends $(LDLIBS) at link time, so this one variable
+# is what makes that work with zero custom Makefile or make wrapper needed.
+ENV LDLIBS=-lcs50
 
 # Create a place to store our local telemetry/helper hooks
 RUN mkdir -p /usr/local/bin/ta_hooks
