@@ -69,3 +69,12 @@ If you prefer using the command line, you can achieve the exact same result by r
 3. `git push` *(VS Code will intercept this and ask if you want to publish the branch to a private repo)*
 
 Your code is now safely backed up and visible in your new private GitHub repository!
+
+## Step 6 (Optional, Advanced): Update Your Environment
+This repository's `.devcontainer` setup (the tools and CodingRabbit extension pre-installed in your Codespace) is occasionally updated after courses have already started. If you're comfortable with git and want to pull in the latest version without disturbing your own work, run these commands in the terminal:
+
+1. `git remote add upstream https://github.com/emowat/codingrabbit-cs50-week4.git` *(one-time setup — links you to the original course repository; skip this if you've already done it once)*
+2. `git fetch upstream`
+3. `git checkout upstream/main -- .devcontainer` *(pulls in only the environment configuration — your own code is untouched)*
+
+VS Code will detect that the environment configuration changed and prompt you to rebuild your container — click **Rebuild** when asked, and your environment will update in place. This shows up as a normal file change afterward, so it'll be included automatically the next time you save/submit your work (Step 5 above).
